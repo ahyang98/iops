@@ -1,0 +1,11 @@
+apiVersion: vpc.tencentcloud.crossplane.io/v1alpha1
+kind: Subnet
+metadata:
+  name: redis-subnet
+spec:
+  forProvider:
+    availabilityZone: "ap-hongkong-2"
+    cidrBlock: "10.2.2.0/24"
+    name: "redis-subnet-example"
+    vpcIdRef:
+      name: "redis-vpc"
