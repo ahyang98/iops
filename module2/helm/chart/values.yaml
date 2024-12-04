@@ -1,0 +1,32 @@
+worker:
+  image: ahyang98/vote_worker
+  tag: latest
+
+vote:
+  image: ahyang98/vote_vote
+  tag: latest
+
+result:
+  image: ahyang98/vote_result
+  tag: latest
+
+seed:
+  image: ahyang98/vote_seed_data
+  tag: latest
+
+redis:
+  enabled: true
+  fullnameOverride: redis
+  auth:
+    enabled: false
+
+postgresql-ha:
+  enabled: true
+  fullnameOverride: db
+  global:
+    postgresql:
+      username: postgres
+      password: postgres
+      database: postgres
+      repmgrUsername: postgres
+      repmgrPassword: postgres

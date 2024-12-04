@@ -6,3 +6,6 @@ terraform.tfstate.*.backup
 config.yaml
 key
 key.pub
+charts
+*.tgz
+Chart.lock

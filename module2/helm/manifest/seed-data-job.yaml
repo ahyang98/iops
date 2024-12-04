@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: seed-data
+spec:
+  template:
+    spec:
+      initContainers:
+        - name: wait-for-db
+          image: ghcr.io/groundnuty/k8s-wait-for:v2.0
+          args: ["pod", "-lapp=vote"]    
+      containers:
+        - name: seed-data
+          image: ahyang98/vote_seed_data:latest
+      restartPolicy: Never  # 任务完成后不重启 Pod
+  backoffLimit: 4  # 最大重试次数，如果 Pod 失败，会重试直到达到这个次数
