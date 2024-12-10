@@ -9,3 +9,5 @@ key.pub
 charts
 *.tgz
 Chart.lock
+__pycache__
+*.pyc

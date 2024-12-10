@@ -1,5 +1,5 @@
 import json
-from cmd import CMD
+from cmds.cmd import CMD
 
 class CMDApplyManifest(CMD):
     def __init__(self):
@@ -7,7 +7,7 @@ class CMDApplyManifest(CMD):
             "type": "function",
             "function": {
                 "name": "apply_manifest",
-                "description": "重启服务",
+                "description": "部署资源对象配置",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -17,7 +17,7 @@ class CMDApplyManifest(CMD):
                         },
                         "image": {
                             "type": "string",
-                            "description": '资源对象，例如："nginx:1.0"',
+                            "description": '镜像，例如："nginx:1.0"',
                         },
                     },
                 },
@@ -28,6 +28,6 @@ class CMDApplyManifest(CMD):
         self.func = __class__.apply_manifest 
     
     @staticmethod
-    def apply_manifest(resource_type，image):
+    def apply_manifest(resource_type, image):
         print(f"apply manifest resource {resource_type} image {image}")
-        return json.dumps({"resource": resource_type，"image": image})
+        return json.dumps({"resource": resource_type, "image": image})

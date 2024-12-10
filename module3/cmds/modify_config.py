@@ -1,5 +1,5 @@
 import json
-from cmd import CMD
+from cmds.cmd import CMD
 
 class CMDModifyConfig(CMD):
     def __init__(self):

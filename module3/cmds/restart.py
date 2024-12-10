@@ -1,12 +1,12 @@
 import json
-from cmd import CMD
+from cmds.cmd import CMD
 
 class CMDRestartService(CMD):
     def __init__(self):
         self.tool = {
             "type": "function",
             "function": {
-                "name": "modify_config",
+                "name": "restart",
                 "description": "重启服务",
                 "parameters": {
                     "type": "object",

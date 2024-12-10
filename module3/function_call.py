@@ -1,6 +1,6 @@
 from openai import OpenAI
 import json
-from .cmds.cmd import CMD
+from cmds.cmd import CMD
 
 class FunctionCall:
     def __init__(self):
@@ -13,11 +13,13 @@ class FunctionCall:
         self.funcs = {}
     
     def register(self, cmd: CMD):
-        if cmd.key and cmd.func:
-            self.funcs[cmd.key]=cmd.func
+        func_key, func, tool =cmd()
+        if func_key and func:
+            self.funcs[func_key]=func
 
-        if cmd.tool:
-            self.tools.append(cmd.tool)
+        if tool:
+            self.tools.append(tool)
+        return self
     
     def conversation(self):
         query = input("请输入命令: ")
@@ -58,7 +60,7 @@ class FunctionCall:
                 }
             )
         
-        resp = self.client.completions.create(
+        resp = self.client.chat.completions.create(
             model="gpt-4o",
             messages=messages
         )
