@@ -6,6 +6,7 @@ import (
 	"fmt"
 	corev1 "k8s.io/api/core/v1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/client-go/dynamic"
 	"k8s.io/client-go/kubernetes"
@@ -52,6 +53,13 @@ func main() {
 	}
 	for _, resource := range resources.Items {
 		fmt.Printf("Name: %s, Namespace %s \n", resource.GetName(), resource.GetNamespace())
+		domain, found, err := unstructured.NestedString(resource.Object, "spec", "domain")
+		if err != nil {
+			continue
+		}
+		if found {
+			fmt.Println("domain:", domain)
+		}
 	}
 
 }
