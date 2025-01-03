@@ -1,0 +1,7 @@
+apiVersion: aiops.geektime.com/v1alpha1
+kind: AIOps
+metadata:
+  name: expert
+  namespace: default
+spec:
+  domain: AIInfra
