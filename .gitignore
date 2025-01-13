@@ -11,3 +11,4 @@ charts
 Chart.lock
 __pycache__
 *.pyc
+*.exe
